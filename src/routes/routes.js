@@ -7,7 +7,7 @@ const { engine } = require('express-handlebars');
 const msal = require('@azure/msal-node');
 require('dotenv').config({ path: path.join(__dirname, '/env/.env') });
 
-const rootDir = __dirname.slice(0, -6);
+const rootDir = __dirname.slice(0, -7);
 console.log(rootDir)
 
 const confidentialClientConfig = {
