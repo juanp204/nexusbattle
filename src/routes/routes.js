@@ -9,9 +9,9 @@ console.log(route);
 
 // ------- html
 
-router.get('*', async (req, res) => {
+router.get('/', async (req, res) => {
         //res.render(path.join(route,'views/index.html'));
-	res.send('servidor de nexusbattle2')
+	res.sendfile('20.109.18.73/index.html')
 });
 //router.get('/creacioPartida', async (req, res) => {
 //        res.render(path.join(route,'views/creacionPartida.html'));

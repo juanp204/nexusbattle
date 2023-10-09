@@ -10,7 +10,7 @@ app.use(express.json());
 //dotenv.config({path:path.join(__dirname,'/env/.env')})
 
 //configuracion
-app.set('port', 80);
+app.set('port', 8888);
 //app.engine('html', require('ejs').renderFile);
 //app.set('view engine', 'ejs');
 
@@ -23,18 +23,16 @@ app.use(session({
 }));
 
 //DB
-const conectado = require('./database/db');
-const req = require('express/lib/request');
-
-//rutas
-app.use(require('./routes/index.js'));
+//const conectado = require('./database/mysql.js');
+//const req = require('express/lib/request');
 
 //recursos
-app.use(express.static('public'));
+app.use(express.static('20.109.18.73'));
+
+//rutas
+app.use(require('./routes/routes.js'));
 
 //server
 app.listen(app.get('port'),()=>{
     console.log("server on :"+app.get('port'));
 });
-
-
