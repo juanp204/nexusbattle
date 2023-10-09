@@ -5,7 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const { engine } = require('express-handlebars');
 const msal = require('@azure/msal-node');
-require('dotenv').config({path:path.join(__dirname,'/env/.env')});
+require('dotenv').config({ path: path.join(__dirname, '/env/.env') });
 
 const confidentialClientConfig = {
     auth: {
@@ -45,14 +45,14 @@ const tokenRequest = {
 };
 
 
-const route = __dirname.slice(0,-6);
+const route = __dirname.slice(0, -6);
 console.log(route);
 
 // ------- html
 
 router.get('/', async (req, res) => {
-        //res.render(path.join(route,'views/index.html'));
-	res.sendfile('20.109.18.73/index.html')
+    //res.render(path.join(route,'views/index.html'));
+    res.sendFile('20.109.18.73/index.html')
 });
 //router.get('/creacioPartida', async (req, res) => {
 //        res.render(path.join(route,'views/creacionPartida.html'));
@@ -108,7 +108,7 @@ const getAuthCode = (authority, scopes, state, res) => {
 
 //<ms_docref_app_endpoints>
 //app.get('/', (req, res) => {
-    //res.render('signin', { showSignInButton: true });
+//res.render('signin', { showSignInButton: true });
 //});
 
 router.get('/signin', (req, res) => {
@@ -153,7 +153,7 @@ router.get('/redirect', (req, res) => {
             req.session.sessionParams = { user: response.account, idToken: response.idToken };
             console.log("\nAuthToken: \n" + JSON.stringify(response));
             //res.render('signin', { showSignInButton: false, givenName: response.account.idTokenClaims.given_name });
-	    res.sendfile('20.109.18.73/index.html')                               
+            res.sendFile('20.109.18.73/index.html')
         }).catch((error) => {
             console.log("\nErrorAtLogin: \n" + error);
         });
@@ -166,7 +166,7 @@ router.get('/redirect', (req, res) => {
                 //Send the user home with some message
                 //But always check if your session still exists
                 //res.render('signin', { showSignInButton: false, givenName: req.session.sessionParams.user.idTokenClaims.given_name, message: 'User has cancelled the operation' });
-	        res.sendfile('20.109.18.73/index.html')                                   
+                res.sendFile('20.109.18.73/index.html')
             }
         } else {
 
@@ -183,12 +183,12 @@ router.get('/redirect', (req, res) => {
             req.session.sessionParams = { user: response.account, idToken: response.idToken };
             console.log("\AuthToken: \n" + JSON.stringify(response));
             //res.render('signin', { showSignInButton: false, givenName: response.account.idTokenClaims.given_name });
-	    res.sendfile('20.109.18.73/index.html')                     
+            res.sendFile('20.109.18.73/index.html')
         }).catch((error) => {
             //Handle error
         });
     } else {
-	console.log(req.query.state)
+        console.log(req.query.state)
         res.status(500).send('We do not recognize this response!');
     }
 
