@@ -154,9 +154,10 @@ router.get('/redirect', (req, res) => {
             console.log("\nAuthToken: \n" + JSON.stringify(response));
             //res.render('signin', { showSignInButton: false, givenName: response.account.idTokenClaims.given_name });
             res.sendFile(path.join(rootDir, '20.109.18.73', 'index.html'))
-        }).catch((error) => {
-            console.log("\nErrorAtLogin: \n" + error);
-        });
+        })
+        //.catch((error) => {
+        //    console.log("\nErrorAtLogin: \n" + error);
+        //});
     } else if (req.query.state === APP_STATES.PASSWORD_RESET) {
         //If the query string has a error param
         if (req.query.error) {
