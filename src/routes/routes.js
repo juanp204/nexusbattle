@@ -48,28 +48,13 @@ const tokenRequest = {
 };
 
 
-// ------- html
+// ------- paginas
 
-router.get('/', async (req, res) => {
+router.get(['/', '/perfil', 'banco', 'subasta'], async (req, res) => {
     //res.render(path.join(route,'views/index.html'));
     res.sendFile(path.join(rootDir, '20.109.18.73', 'index.html'))
 });
-//router.get('/creacioPartida', async (req, res) => {
-//        res.render(path.join(route,'views/creacionPartida.html'));
-//});
-//router.get('/lobbyJuegos', async (req, res) => {
-//        res.render(path.join(route,'views/lobbyJuegos.html'));
-//});
-//router.get('/salaJuego', async (req, res) => {
-//        res.render(path.join(route,'views/salaJuego.html'));
-//});
 
-
-// ------ js
-
-//router.get('/index', async (req, res) => {
-//        res.redirect('/')
-//});
 
 // ------ rutas del directorio activo
 
@@ -153,11 +138,10 @@ router.get('/redirect', (req, res) => {
             req.session.sessionParams = { user: response.account, idToken: response.idToken };
             console.log("\nAuthToken: \n" + JSON.stringify(response));
             //res.render('signin', { showSignInButton: false, givenName: response.account.idTokenClaims.given_name });
-            res.sendFile(path.join(rootDir, '20.109.18.73', 'index.html'))
-        })
-        //.catch((error) => {
-        //    console.log("\nErrorAtLogin: \n" + error);
-        //});
+            res.redirect('/')
+        }).catch((error) => {
+            console.log("\nErrorAtLogin: \n" + error);
+        });
     } else if (req.query.state === APP_STATES.PASSWORD_RESET) {
         //If the query string has a error param
         if (req.query.error) {
@@ -167,7 +151,7 @@ router.get('/redirect', (req, res) => {
                 //Send the user home with some message
                 //But always check if your session still exists
                 //res.render('signin', { showSignInButton: false, givenName: req.session.sessionParams.user.idTokenClaims.given_name, message: 'User has cancelled the operation' });
-                res.sendFile(path.join(rootDir, '20.109.18.73', 'index.html'))
+                res.redirect('/')
             }
         } else {
 
@@ -184,7 +168,7 @@ router.get('/redirect', (req, res) => {
             req.session.sessionParams = { user: response.account, idToken: response.idToken };
             console.log("\AuthToken: \n" + JSON.stringify(response));
             //res.render('signin', { showSignInButton: false, givenName: response.account.idTokenClaims.given_name });
-            res.sendFile(path.join(rootDir, '20.109.18.73', 'index.html'))
+            res.redirect('/')
         }).catch((error) => {
             //Handle error
         });
